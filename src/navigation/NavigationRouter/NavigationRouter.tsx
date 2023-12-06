@@ -1,4 +1,4 @@
-import React, { FC, lazy } from "react";
+import React, { FC, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { screenPaths } from "./NavigationRouter.constans";
 
@@ -22,10 +22,12 @@ interface IProps {}
 
 export const NavigationRouter: FC<IProps> = React.memo(({}) => {
   return (
-    <Routes>
-      <Route path={screenPaths.Home} element={<Home />} />
-      <Route path={screenPaths.Admin} element={<Admin />} />
-      <Route path={screenPaths.Home} element={<MovieOrder />} />
-    </Routes>
+    <Suspense fallback={<></>}>
+      <Routes>
+        <Route path={screenPaths.Home} element={<Home />} />
+        <Route path={screenPaths.Admin} element={<Admin />} />
+        <Route path={screenPaths.MovieOrder} element={<MovieOrder />} />
+      </Routes>
+    </Suspense>
   );
 });

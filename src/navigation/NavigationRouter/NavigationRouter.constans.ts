@@ -1,5 +1,5 @@
 export const screenPaths = {
   Home: "/",
   Admin: "/admin",
-  MovieOrder: "/movie/order",
+  MovieOrder: "/movie/order/:movieScheduleId",
 };
