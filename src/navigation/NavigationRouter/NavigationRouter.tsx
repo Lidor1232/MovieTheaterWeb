@@ -17,6 +17,11 @@ const MovieOrder = lazy(() =>
     default: module.MovieOrder,
   }))
 );
+const CreateMovie = lazy(() =>
+  import("../../screens/CreateMovie/CreateMovie").then((module) => ({
+    default: module.CreateMovie,
+  }))
+);
 
 interface IProps {}
 
@@ -27,6 +32,7 @@ export const NavigationRouter: FC<IProps> = React.memo(({}) => {
         <Route path={screenPaths.Home} element={<Home />} />
         <Route path={screenPaths.Admin} element={<Admin />} />
         <Route path={screenPaths.MovieOrder} element={<MovieOrder />} />
+        <Route path={screenPaths.CreateMovie} element={<CreateMovie />} />
       </Routes>
     </Suspense>
   );
