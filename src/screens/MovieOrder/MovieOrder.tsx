@@ -4,7 +4,10 @@ import { onIsError, onIsLoading, onMount } from "./MovieOrder.controller";
 import { shallowEqual, useSelector } from "react-redux";
 import { IRootState } from "../../store/reducers/combineReducer.reducer";
 import { Loader } from "../../components/Loader/Loader";
-import { MovieOrderDetails } from "./MovieOrderDetails/MovieOrderDetails";
+import { MovieOrderDetails } from "./components/MovieOrderDetails/MovieOrderDetails";
+import { OrderSeatModal } from "./modals/OrderSeatModal/OrderSeatModal";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IProps {}
 
@@ -55,13 +58,18 @@ export const MovieOrder: FC<IProps> = React.memo(({}) => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : isError ? (
-        <h1>Something went wrong...</h1>
-      ) : (
-        <MovieOrderDetails />
-      )}
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : isError ? (
+          <h1>Something went wrong...</h1>
+        ) : (
+          <MovieOrderDetails />
+        )}
+      </>
+
+      <OrderSeatModal />
+      <ToastContainer />
     </>
   );
 });

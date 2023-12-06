@@ -1,18 +1,18 @@
 import React, { FC, useCallback } from "react";
-import { ISeat } from "../../../../../utills/types";
+import { ISeat } from "../../../../../../utills/types";
 import styles from "./SeatItem.module.scss";
-import { useNavigate } from "react-router-dom";
+import { onClick } from "./SeatItem.controller";
 
 interface IProps {
   item: ISeat;
 }
 
 export const SeatItem: FC<IProps> = React.memo(({ item }) => {
-  const navigate = useNavigate();
-
   const _onClick = useCallback(() => {
-    navigate(`/movie/order/seat/${item._id}`);
-  }, [navigate]);
+    onClick({
+      seatId: item._id,
+    });
+  }, [item]);
 
   return (
     <div

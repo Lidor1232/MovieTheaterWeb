@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { shallowEqual, useSelector } from "react-redux";
-import { IRootState } from "../../../../store/reducers/combineReducer.reducer";
+import { IRootState } from "../../../../../store/reducers/combineReducer.reducer";
 
 interface IProps {}
 
