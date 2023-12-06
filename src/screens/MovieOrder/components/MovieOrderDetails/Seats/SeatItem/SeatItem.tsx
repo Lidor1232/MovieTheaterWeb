@@ -10,7 +10,7 @@ interface IProps {
 export const SeatItem: FC<IProps> = React.memo(({ item }) => {
   const _onClick = useCallback(() => {
     onClick({
-      seatId: item._id,
+      item,
     });
   }, [item]);
 
