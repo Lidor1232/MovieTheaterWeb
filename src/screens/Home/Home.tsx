@@ -1,7 +1,35 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { onMount } from "./Home.controller";
+import { shallowEqual, useSelector } from "react-redux";
+import { IRootState } from "../../store/reducers/combineReducer.reducer";
+import { Loader } from "../../components/Loader/Loader";
+import { MoviesSchedule } from "./MoviesSchedule/MoviesSchedule";
 
 interface IProps {}
 
 export const Home: FC<IProps> = React.memo(({}) => {
-  return <></>;
+  const isLoading = useSelector(
+    (state: IRootState) => state.home.requests.moviesScheduleRequest.isLoading,
+    shallowEqual
+  );
+  const isError = useSelector(
+    (state: IRootState) => state.home.requests.moviesScheduleRequest.isError,
+    shallowEqual
+  );
+
+  useEffect(() => {
+    onMount();
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : isError ? (
+        <h2>Something went wrong...</h2>
+      ) : (
+        <MoviesSchedule />
+      )}
+    </>
+  );
 });

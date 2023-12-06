@@ -1,5 +1,6 @@
 import store from "../store";
 import {
+  homeGetMoviesScheduleFetchAll,
   homeGetMoviesScheduleFetchFail,
   homeGetMoviesScheduleFetchMoreFail,
   homeGetMoviesScheduleFetchMoreRequest,
@@ -15,6 +16,9 @@ export async function onGetMoviesSchedule(): Promise<void> {
     const moviesScheduleRes = await getMoviesSchedule({
       page: 1,
     });
+    if (moviesScheduleRes.moviesSchedule.length === 0) {
+      store.dispatch(homeGetMoviesScheduleFetchAll());
+    }
     store.dispatch(
       homeGetMoviesScheduleFetchSuccess({
         moviesSchedule: moviesScheduleRes.moviesSchedule,
@@ -27,10 +31,19 @@ export async function onGetMoviesSchedule(): Promise<void> {
 
 export async function onGetNextMoviesSchedule(): Promise<void> {
   try {
+    const isFetchAllMoviesSchedule =
+      store.getState().home.requests.moviesScheduleRequest.isFetchAll;
+    if (isFetchAllMoviesSchedule) {
+      return;
+    }
     store.dispatch(homeGetMoviesScheduleFetchMoreRequest());
+    const nextPage = store.getState().home.requests.moviesScheduleRequest.page;
     const nextMoviesScheduleRes = await getMoviesSchedule({
-      page: 1,
+      page: nextPage,
     });
+    if (nextMoviesScheduleRes.moviesSchedule.length === 0) {
+      store.dispatch(homeGetMoviesScheduleFetchAll());
+    }
     store.dispatch(
       homeGetMoviesScheduleFetchMoreSuccess({
         moviesSchedule: nextMoviesScheduleRes.moviesSchedule,

@@ -24,6 +24,7 @@ interface IAction {
 }
 
 export interface IState {
+  isFooterVisible: boolean;
   requests: {
     moviesScheduleRequest: {
       isLoading: boolean;
@@ -42,6 +43,7 @@ export interface IState {
 }
 
 export const initialState: IState = {
+  isFooterVisible: false,
   requests: {
     moviesScheduleRequest: {
       isLoading: false,

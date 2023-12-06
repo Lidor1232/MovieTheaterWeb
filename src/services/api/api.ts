@@ -41,6 +41,9 @@ export async function updateMovie({
   const res = await movieTheaterAxios({
     method: "PUT",
     url: `/movie/${movieId}`,
+    data: {
+      ...updateMovie,
+    },
   });
   return res.data;
 }
@@ -73,8 +76,10 @@ export async function getMoviesSchedule({
       sortBy,
     },
     data: {
-      startDate,
-      endDate,
+      terms: {
+        startDate,
+        endDate,
+      },
     },
   });
   return res.data;
