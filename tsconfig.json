@@ -18,7 +18,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "exclude": [
+      "**/*.scss" // Exclude all SCSS files
+    ]
   },
   "include": [
     "src"
