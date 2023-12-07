@@ -10,11 +10,16 @@ import {
 } from "../actions/home.actions";
 import { getMoviesSchedule } from "../../services/api/api";
 
-export async function onGetMoviesSchedule(): Promise<void> {
+export async function onGetMoviesSchedule({
+  sortBy,
+}: {
+  sortBy: string;
+}): Promise<void> {
   try {
     store.dispatch(homeGetMoviesScheduleFetchRequest());
     const moviesScheduleRes = await getMoviesSchedule({
       page: 1,
+      sortBy,
     });
     if (moviesScheduleRes.moviesSchedule.length === 0) {
       store.dispatch(homeGetMoviesScheduleFetchAll());

@@ -6,8 +6,15 @@ import {
   HOME_GET_MOVIES_SCHEDULE_FETCH_MORE_SUCCESS,
   HOME_GET_MOVIES_SCHEDULE_FETCH_REQUEST,
   HOME_GET_MOVIES_SCHEDULE_FETCH_SUCCESS,
+  HOME_GET_MOVIES_SCHEDULE_SET_DATE_RANGE,
+  HOME_GET_MOVIES_SCHEDULE_SET_SORT_BY,
 } from "../actions/home.actions";
 import { IMovieSchedule } from "../../utills/types";
+
+export interface IDateRange {
+  startDate: string;
+  endDate: string;
+}
 
 type IActionType =
   | typeof HOME_GET_MOVIES_SCHEDULE_FETCH_REQUEST
@@ -29,14 +36,12 @@ export interface IState {
       isLoading: boolean;
       isError: boolean;
       moviesSchedule: IMovieSchedule[];
-      dateRange: {
-        startDate: string;
-        endDate: string;
-      } | null;
+      dateRange: IDateRange | null;
       page: number;
       isFetchAll: boolean;
       isLoadingMore: boolean;
       isLoadingMoreError: boolean;
+      sortBy: string;
     };
   };
 }
@@ -52,6 +57,7 @@ export const initialState: IState = {
       isFetchAll: false,
       isLoadingMore: false,
       isLoadingMoreError: false,
+      sortBy: "startDate",
     },
   },
 };
@@ -148,6 +154,30 @@ export const reducer = (state = initialState, action: IAction) => {
           moviesScheduleRequest: {
             ...state.requests.moviesScheduleRequest,
             isFetchAll: true,
+          },
+        },
+      };
+
+    case HOME_GET_MOVIES_SCHEDULE_SET_SORT_BY:
+      return {
+        ...state,
+        requests: {
+          ...state.requests,
+          moviesScheduleRequest: {
+            ...state.requests.moviesScheduleRequest,
+            sortBy: action.payload.sortBy,
+          },
+        },
+      };
+
+    case HOME_GET_MOVIES_SCHEDULE_SET_DATE_RANGE:
+      return {
+        ...state,
+        requests: {
+          ...state.requests,
+          moviesScheduleRequest: {
+            ...state.requests.moviesScheduleRequest,
+            dateRange: action.payload.dateRange,
           },
         },
       };

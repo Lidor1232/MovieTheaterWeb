@@ -16,10 +16,14 @@ export const Home: FC<IProps> = React.memo(({}) => {
     (state: IRootState) => state.home.requests.moviesScheduleRequest.isError,
     shallowEqual
   );
+  const sortBy = useSelector(
+    (state: IRootState) => state.home.requests.moviesScheduleRequest.sortBy,
+    shallowEqual
+  );
 
   useEffect(() => {
-    onMount();
-  }, []);
+    onMount({ sortBy });
+  }, [sortBy]);
 
   return (
     <>
