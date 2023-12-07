@@ -8,15 +8,21 @@ import {
   reducer as createMovieReducer,
   IState as ICreateMovieState,
 } from "./createMovie.reducer";
+import {
+  reducer as updateMovieReducer,
+  IState as IUpdateMovieState,
+} from "./updateMovie.reducer";
 
 export default combineReducers({
   home: homeReducer,
   movieOrder: movieOrderReducer,
   createMovie: createMovieReducer,
+  updateMovie: updateMovieReducer,
 });
 
 export interface IRootState {
   home: HomeState;
   movieOrder: MovieOrderState;
   createMovie: ICreateMovieState;
+  updateMovie: IUpdateMovieState;
 }
