@@ -158,3 +158,15 @@ export async function orderSeat({
   });
   return res.data;
 }
+
+export async function deleteMovie({
+  movieId,
+}: {
+  movieId: string;
+}): Promise<{ message: string }> {
+  const res = await movieTheaterAxios({
+    method: "DELETE",
+    url: `/movie/${movieId}`,
+  });
+  return res.data;
+}

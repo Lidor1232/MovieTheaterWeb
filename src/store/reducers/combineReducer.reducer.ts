@@ -12,12 +12,17 @@ import {
   reducer as updateMovieReducer,
   IState as IUpdateMovieState,
 } from "./updateMovie.reducer";
+import {
+  reducer as adminReducer,
+  IState as IAdminState,
+} from "./admin.reducer";
 
 export default combineReducers({
   home: homeReducer,
   movieOrder: movieOrderReducer,
   createMovie: createMovieReducer,
   updateMovie: updateMovieReducer,
+  admin: adminReducer,
 });
 
 export interface IRootState {
@@ -25,4 +30,5 @@ export interface IRootState {
   movieOrder: MovieOrderState;
   createMovie: ICreateMovieState;
   updateMovie: IUpdateMovieState;
+  admin: IAdminState;
 }
