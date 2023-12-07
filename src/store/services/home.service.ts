@@ -9,17 +9,26 @@ import {
   homeGetMoviesScheduleFetchSuccess,
 } from "../actions/home.actions";
 import { getMoviesSchedule } from "../../services/api/api";
+import { IDateRange } from "../reducers/home.reducer";
 
 export async function onGetMoviesSchedule({
   sortBy,
+  dateRange,
 }: {
   sortBy: string;
+  dateRange: IDateRange | null;
 }): Promise<void> {
   try {
     store.dispatch(homeGetMoviesScheduleFetchRequest());
     const moviesScheduleRes = await getMoviesSchedule({
       page: 1,
       sortBy,
+      ...(dateRange
+        ? {
+            startDate: dateRange.startDate,
+            endDate: dateRange.endDate,
+          }
+        : null),
     });
     if (moviesScheduleRes.moviesSchedule.length === 0) {
       store.dispatch(homeGetMoviesScheduleFetchAll());

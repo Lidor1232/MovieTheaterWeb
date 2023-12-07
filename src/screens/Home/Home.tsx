@@ -20,10 +20,14 @@ export const Home: FC<IProps> = React.memo(({}) => {
     (state: IRootState) => state.home.requests.moviesScheduleRequest.sortBy,
     shallowEqual
   );
+  const dateRange = useSelector(
+    (state: IRootState) => state.home.requests.moviesScheduleRequest.dateRange,
+    shallowEqual
+  );
 
   useEffect(() => {
-    onMount({ sortBy });
-  }, [sortBy]);
+    onMount({ sortBy, dateRange });
+  }, [sortBy, dateRange]);
 
   return (
     <>

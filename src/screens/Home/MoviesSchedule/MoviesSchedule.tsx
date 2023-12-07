@@ -6,6 +6,7 @@ import { IMovieSchedule } from "../../../utills/types";
 import { MovieScheduleItem } from "./MovieScheduleItem/MovieScheduleItem";
 import { Footer } from "./Footer/Footer";
 import { SortBy } from "./SortBy/SortBy";
+import { DateRange } from "./DateRange/DateRange";
 
 interface IProps {}
 
@@ -18,10 +19,7 @@ export const MoviesSchedule: FC<IProps> = React.memo(() => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <h2>Filter by date Range: </h2>
-        <></>
-      </div>
+      <DateRange />
       <SortBy />
       {moviesSchedule.map((movieSchedule: IMovieSchedule) => (
         <MovieScheduleItem item={movieSchedule} key={movieSchedule._id} />
