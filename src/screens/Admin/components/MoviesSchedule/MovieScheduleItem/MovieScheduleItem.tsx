@@ -49,6 +49,7 @@ export const MovieScheduleItem: FC<IProps> = React.memo(({ item }) => {
       <h3>Minutes: {item.movie.durationInMinutes}</h3>
       <h3>Movie Schedule Date: {item.startDate}</h3>
       <h3>Movie Schedule Status: {item.status}</h3>
+      <h3>Movie Status: {item.movie.status}</h3>
       <Button className={styles.button} onClick={_onClickUpdateMovieSchedule}>
         Edit Movie
       </Button>

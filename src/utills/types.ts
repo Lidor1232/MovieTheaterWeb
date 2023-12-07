@@ -5,6 +5,7 @@ export interface IMovie {
   title: string;
   description: string;
   durationInMinutes: number;
+  status: IMovieStatus;
 }
 
 declare global {
